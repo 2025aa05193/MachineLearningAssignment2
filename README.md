@@ -1,2 +1,2 @@
 # MachineLearningAssignment2
-SentimentAnalysis For ML Assignment 2
+Personality Analysis For ML Assignment 2
