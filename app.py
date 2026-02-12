@@ -112,6 +112,21 @@ if uploaded_file is not None and model is not None:
 
     st.dataframe(metrics_df, use_container_width=True)
 
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Accuracy", f"{accuracy:.4f}")
+    col2.metric("AUC", f"{auc:.4f}")
+    col3.metric("Precision", f"{precision:.4f}")
+
+    col4, col5, col6 = st.columns(3)
+
+    col4.metric("Recall", f"{recall:.4f}")
+    col5.metric("F1 Score", f"{f1:.4f}")
+    col6.metric("MCC", f"{mcc:.4f}")
+    st.dataframe(
+    metrics_df.style.format({"Score": "{:.4f}"}),
+    use_container_width=True
+)
 
     # -----------------------------
     # Confusion Matrix
