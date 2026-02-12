@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import matplotlib.pyplot as plt,ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 import seaborn as sns
 from MBTIClass import MBTIType
 from sklearn.metrics import (
@@ -13,6 +13,7 @@ from sklearn.metrics import (
     matthews_corrcoef,
     confusion_matrix,
     classification_report
+    ,ConfusionMatrixDisplay
 )
 
 st.title("MBTI Personality Classification App")
