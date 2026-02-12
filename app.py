@@ -140,18 +140,10 @@ if uploaded_file is not None and model is not None:
     overall_report = report_df.iloc[-3:]  # keep accuracy + macro + weighted
 
     st.subheader("Per-Class Performance")
-    st.dataframe(class_report, use_container_width=True)
+    st.table(class_report)
 
     st.subheader("Overall Performance")
-    st.dataframe(overall_report, use_container_width=True)
+    st.table(overall_report)
 
-    col1, col2 = st.columns([3, 1])
-
-    with col1:
-        st.markdown("**Per-Class Performance**")
-        st.table(class_report)
-
-    with col2:
-        st.markdown("**Overall Metrics**")
-        st.table(overall_report)
+ 
 
