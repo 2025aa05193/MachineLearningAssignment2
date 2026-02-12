@@ -123,5 +123,18 @@ if uploaded_file is not None and model is not None:
     # Classification Report
     # -----------------------------
     st.subheader("Classification Report")
-    report = classification_report(y_pred, y_pred)
-    st.text(report)
+
+    report_dict = classification_report(
+        y_test,
+        y_pred,
+        target_names=class_names,
+        output_dict=True
+    )
+
+    report_df = pd.DataFrame(report_dict).transpose()
+
+    # Round values
+    report_df = report_df.round(3)
+
+    st.dataframe(report_df, use_container_width=True)
+
