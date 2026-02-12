@@ -63,9 +63,12 @@ st.subheader("Test Data Source")
 
 data_source = st.radio(
     "Select Test Data Option:",
-    ("Use Preloaded Test File", "Upload Your Own CSV")
+    ("Select an option","Use Preloaded Test File", "Upload Your Own CSV")
 )
-if data_source == "Use Preloaded Test File":
+if data_source == "Select an option":
+    st.info("Please select a test data option to proceed.")
+    st.stop()
+elif data_source == "Use Preloaded Test File":
     
    
     test_path = "data/split/test_set.csv" 
@@ -85,7 +88,7 @@ if data_source == "Use Preloaded Test File":
         st.error("Preloaded test file not found in repository.")
         st.stop()
 
-else:
+elif data_source == "Upload Your Own CSV":
     uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
     
     if uploaded_file is not None:
