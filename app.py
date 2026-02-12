@@ -86,12 +86,32 @@ if uploaded_file is not None and model is not None:
 
     st.subheader("Evaluation Metrics")
 
-    st.write(f"Accuracy: {accuracy:.4f}")
-    st.write(f"AUC: {auc:.4f}")
-    st.write(f"Precision: {precision:.4f}")
-    st.write(f"Recall: {recall:.4f}")
-    st.write(f"F1 Score: {f1:.4f}")
-    st.write(f"MCC Score: {mcc:.4f}")
+    metrics_dict = {
+        "Metric": [
+            "Accuracy",
+            "AUC (Macro)",
+            "Precision (Macro)",
+            "Recall (Macro)",
+            "F1 Score (Macro)",
+            "MCC Score"
+        ],
+        "Score": [
+            accuracy,
+            auc,
+            precision,
+            recall,
+            f1,
+            mcc
+        ]
+    }
+
+    metrics_df = pd.DataFrame(metrics_dict)
+
+    # Round values
+    metrics_df["Score"] = metrics_df["Score"].round(4)
+
+    st.dataframe(metrics_df, use_container_width=True)
+
 
     # -----------------------------
     # Confusion Matrix
