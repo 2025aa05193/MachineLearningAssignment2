@@ -40,8 +40,9 @@ model_dict = {
     "Random Forest": "model/random_forest.pkl",
     "XGBoost": "model/xgboost.pkl"
 }
+model_path=model_dict[model_option]
 
-with open("model/decision_tree.pkl", "rb") as f:
+with open(model_path, "rb") as f:
     model = pickle.load(f)
                         
 # -----------------------------
