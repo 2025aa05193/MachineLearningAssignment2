@@ -63,7 +63,7 @@ if uploaded_file is not None and model is not None:
     df = pd.read_csv(uploaded_file)
 
     # Separate features and label
-    X_test = df.drop(columns=["Personality"])
+    X_test = df.drop(columns=["Response Id","Personality"])
     y_test = df["Personality"]
 
     # Predictions
