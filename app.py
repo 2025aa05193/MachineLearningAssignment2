@@ -60,7 +60,7 @@ if model_option != "Select a Model":
 # Upload Test Data
 # -----------------------------
 st.subheader("Test Data Source")
-
+df=None
 data_source = st.radio(
     "Select Test Data Option:",
     ("Select an option","Use Preloaded Test File", "Upload Your Own CSV")
@@ -99,7 +99,7 @@ elif data_source == "Upload Your Own CSV":
 
 
 
-if uploaded_file is not None and model is not None:
+if df is not None and model is not None:
     df = pd.read_csv(uploaded_file)
 
     # Separate features and label
