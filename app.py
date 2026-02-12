@@ -71,8 +71,8 @@ if uploaded_file is not None and model is not None:
     # Predictions
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)
-    y_pred = [MBTIType(i).name for i in y_pred]
-    y_test = [MBTIType(i).name for i in y_test]
+    #y_pred = [MBTIType(i).name for i in y_pred]
+    #y_test = [MBTIType(i).name for i in y_test]
 
     # -----------------------------
     # Metrics
