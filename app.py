@@ -73,6 +73,14 @@ if data_source == "Use Preloaded Test File":
     try:
         df = pd.read_csv(test_path)
         st.success("Preloaded test file loaded successfully.")
+        # Download button
+        with open(test_path, "rb") as file:
+            st.download_button(
+                label="Download Test CSV",
+                data=file,
+                file_name="test.csv",
+                mime="text/csv"
+            )
     except FileNotFoundError:
         st.error("Preloaded test file not found in repository.")
         st.stop()
