@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt,ConfusionMatrixDisplay
 import seaborn as sns
 from MBTIClass import MBTIType
 from sklearn.metrics import (
@@ -96,11 +96,19 @@ if uploaded_file is not None and model is not None:
     # Confusion Matrix
     # -----------------------------
     st.subheader("Confusion Matrix")
+    class_names = [e.name for e in MBTIType]
+    cm = confusion_matrix(y_test, y_pred)
 
-    cm = confusion_matrix(y_test, y_pred,labels=[e.name for e in MBTIType])
+    fig, ax = plt.subplots(figsize=(10, 10))
 
-    fig, ax = plt.subplots()
-    sns.heatmap(cm, annot=False, cmap="Blues", ax=ax)
+    disp = ConfusionMatrixDisplay(
+        confusion_matrix=cm,
+        display_labels=class_names
+    )
+
+    disp.plot(ax=ax, xticks_rotation=90)
+    plt.title("Confusion Matrix")
+
     st.pyplot(fig)
 
     # -----------------------------
