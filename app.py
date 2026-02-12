@@ -68,7 +68,7 @@ data_source = st.radio(
 if data_source == "Use Preloaded Test File":
     
    
-    test_path = "data/split/test.csv" 
+    test_path = "data/split/test_set.csv" 
     
     try:
         df = pd.read_csv(test_path)
