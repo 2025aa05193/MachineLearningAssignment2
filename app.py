@@ -38,8 +38,8 @@ model_option = st.selectbox(
 
 # Load model
 model_dict = {
-    "Logistic Regression": "model/trained_model/logistic_regression.pkl",
-    "Decision Tree": "model/trained_model/decision_tree.pkl",
+    "Logistic Regression": "model/trained_models/logistic_regression.pkl",
+    "Decision Tree": "model/trained_models/decision_tree.pkl",
     "KNN": "model/knn.pkl",
     "Naive Bayes": "model/naive_bayes.pkl",
     "Random Forest": "model/random_forest.pkl",
