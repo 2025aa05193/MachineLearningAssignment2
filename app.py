@@ -26,7 +26,7 @@ def load_model(path):
 model_option = st.selectbox(
     "Select Model",
     (
-        "Select a Model"
+        "Select a Model",
         "Logistic Regression",
         "Decision Tree",
         "KNN",
