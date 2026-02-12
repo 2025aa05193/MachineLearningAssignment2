@@ -136,5 +136,22 @@ if uploaded_file is not None and model is not None:
     # Round values
     report_df = report_df.round(3)
 
-    st.dataframe(report_df, use_container_width=True)
+    class_report = report_df.iloc[:-3]  # remove accuracy + averages
+    overall_report = report_df.iloc[-3:]  # keep accuracy + macro + weighted
+
+    st.subheader("Per-Class Performance")
+    st.dataframe(class_report, use_container_width=True)
+
+    st.subheader("Overall Performance")
+    st.dataframe(overall_report, use_container_width=True)
+
+    col1, col2 = st.columns([3, 1])
+
+    with col1:
+        st.markdown("**Per-Class Performance**")
+        st.table(class_report)
+
+    with col2:
+        st.markdown("**Overall Metrics**")
+        st.table(overall_report)
 
