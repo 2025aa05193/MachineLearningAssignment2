@@ -49,7 +49,7 @@ model_dict = {
 #Initialize Selection to Null
 model = None
 
-if model_option != "Select a model":
+if model_option != "Select a Model":
     model_path = model_dict[model_option]
     model = load_model(model_path)
 
