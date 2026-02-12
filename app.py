@@ -124,7 +124,7 @@ if uploaded_file is not None and model is not None:
     st.dataframe(
     metrics_df.style.format({"Score": "{:.4f}"}),
     use_container_width=True
-)
+    )
 
     # -----------------------------
     # Confusion Matrix
