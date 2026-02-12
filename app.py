@@ -59,7 +59,34 @@ if model_option != "Select a Model":
 # -----------------------------
 # Upload Test Data
 # -----------------------------
-uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
+st.subheader("Test Data Source")
+
+data_source = st.radio(
+    "Select Test Data Option:",
+    ("Use Preloaded Test File", "Upload Your Own CSV")
+)
+if data_source == "Use Preloaded Test File":
+    
+   
+    test_path = "data/split/test.csv" 
+    
+    try:
+        df = pd.read_csv(test_path)
+        st.success("Preloaded test file loaded successfully.")
+    except FileNotFoundError:
+        st.error("Preloaded test file not found in repository.")
+        st.stop()
+
+else:
+    uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
+    
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+    else:
+        st.info("Please upload a test CSV file.")
+        st.stop()
+
+
 
 if uploaded_file is not None and model is not None:
     df = pd.read_csv(uploaded_file)
