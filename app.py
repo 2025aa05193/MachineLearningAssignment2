@@ -15,6 +15,10 @@ from sklearn.metrics import (
 )
 
 st.title("MBTI Personality Classification App")
+@st.cache_resource
+def load_model(path):
+    with open(path, "rb") as f:
+        return pickle.load(f)
 
 # -----------------------------
 # Model Selection
@@ -22,6 +26,7 @@ st.title("MBTI Personality Classification App")
 model_option = st.selectbox(
     "Select Model",
     (
+        "Select a Model"
         "Logistic Regression",
         "Decision Tree",
         "KNN",
@@ -40,17 +45,21 @@ model_dict = {
     "Random Forest": "model/random_forest.pkl",
     "XGBoost": "model/xgboost.pkl"
 }
-model_path=model_dict[model_option]
 
-with open(model_path, "rb") as f:
-    model = pickle.load(f)
+#Initialize Selection to Null
+model = None
+
+if model_option != "Select a model":
+    model_path = model_dict[model_option]
+    model = load_model(model_path)
+
                         
 # -----------------------------
 # Upload Test Data
 # -----------------------------
 uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
 
-if uploaded_file is not None:
+if uploaded_file is not None and model is not None:
     df = pd.read_csv(uploaded_file)
 
     # Separate features and label
