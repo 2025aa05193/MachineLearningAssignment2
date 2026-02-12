@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
+from MBTIClass import MBTIType
 from sklearn.metrics import (
     accuracy_score,
     roc_auc_score,
@@ -94,7 +95,7 @@ if uploaded_file is not None and model is not None:
     # -----------------------------
     st.subheader("Confusion Matrix")
 
-    cm = confusion_matrix(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred,labels=[e.name for e in MBTIType])
 
     fig, ax = plt.subplots()
     sns.heatmap(cm, annot=False, cmap="Blues", ax=ax)
