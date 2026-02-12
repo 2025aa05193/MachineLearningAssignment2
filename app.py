@@ -97,7 +97,7 @@ if uploaded_file is not None and model is not None:
     # -----------------------------
     st.subheader("Confusion Matrix")
 
-    cm = confusion_matrix(y_test, y_pred,labels=[e.name for e in MBTIType])
+    cm = confusion_matrix(y_test, y_pred)
 
     fig, ax = plt.subplots()
     sns.heatmap(cm, annot=False, cmap="Blues", ax=ax)
