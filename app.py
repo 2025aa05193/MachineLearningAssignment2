@@ -86,29 +86,6 @@ if uploaded_file is not None and model is not None:
 
     st.subheader("Evaluation Metrics")
 
-    metrics_dict = {
-        "Metric": [
-            "Accuracy",
-            "AUC (Macro)",
-            "Precision (Macro)",
-            "Recall (Macro)",
-            "F1 Score (Macro)",
-            "MCC Score"
-        ],
-        "Score": [
-            accuracy,
-            auc,
-            precision,
-            recall,
-            f1,
-            mcc
-        ]
-    }
-
-    metrics_df = pd.DataFrame(metrics_dict)
-
-    # Round values
-    metrics_df["Score"] = metrics_df["Score"].round(4)
 
     col1, col2, col3 = st.columns(3)
 
@@ -121,10 +98,7 @@ if uploaded_file is not None and model is not None:
     col4.metric("Recall", f"{recall:.4f}")
     col5.metric("F1 Score", f"{f1:.4f}")
     col6.metric("MCC", f"{mcc:.4f}")
-    st.dataframe(
-    metrics_df.style.format({"Score": "{:.4f}"}),
-    use_container_width=True
-    )
+ 
 
     # -----------------------------
     # Confusion Matrix
