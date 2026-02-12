@@ -70,8 +70,8 @@ if uploaded_file is not None and model is not None:
     # Predictions
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)
-    y_pred_labels = [MBTIType(i).name for i in y_pred]
-    y_test_labels = [MBTIType(i).name for i in y_test]
+    y_pred = [MBTIType(i).name for i in y_pred]
+    y_test = [MBTIType(i).name for i in y_test]
 
     # -----------------------------
     # Metrics
@@ -97,7 +97,7 @@ if uploaded_file is not None and model is not None:
     # -----------------------------
     st.subheader("Confusion Matrix")
 
-    cm = confusion_matrix(y_test_labels, y_pred_labels,labels=[e.name for e in MBTIType])
+    cm = confusion_matrix(y_test, y_pred,labels=[e.name for e in MBTIType])
 
     fig, ax = plt.subplots()
     sns.heatmap(cm, annot=False, cmap="Blues", ax=ax)
@@ -107,5 +107,5 @@ if uploaded_file is not None and model is not None:
     # Classification Report
     # -----------------------------
     st.subheader("Classification Report")
-    report = classification_report(y_pred_labels, y_pred_labels)
+    report = classification_report(y_pred, y_pred)
     st.text(report)
