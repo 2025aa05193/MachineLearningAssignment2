@@ -21,7 +21,21 @@ st.title("MBTI Personality Classification App")
 def load_model(path):
     with open(path, "rb") as f:
         return pickle.load(f)
+    
+def validate_test_file(df, model):
+    
+    if "Personality" not in df.columns:
+        return False, "Missing 'Personality' column."
 
+    expected_features = set(model.feature_names_in_)
+    uploaded_features = set(df.drop(columns=["Personality"], errors="ignore").columns)
+
+    if expected_features != uploaded_features:
+        return False, "Feature columns do not match expected model features."
+
+    return True, "File structure is valid."
+
+st.subheader("Select a pre-trained model and upload test data to evaluate performance.")
 # -----------------------------
 # Model Selection
 # -----------------------------
@@ -31,8 +45,8 @@ model_option = st.selectbox(
         "Select a Model",
         "Logistic Regression",
         "Decision Tree",
-        "KNN",
-        "Naive Bayes",
+        "K-Nearest Neighbor Classifier",
+        "Gaussian Naive Bayes",
         "Random Forest",
         "XGBoost"
     )
@@ -40,16 +54,17 @@ model_option = st.selectbox(
 
 # Load model
 model_dict = {
-    "Logistic Regression": "model/trained_models/logistic_regression.pkl",
-    "Decision Tree": "model/trained_models/DecisionTree.pkl",
-    "KNN": "model/knn.pkl",
-    "Naive Bayes": "model/naive_bayes.pkl",
-    "Random Forest": "model/random_forest.pkl",
-    "XGBoost": "model/xgboost.pkl"
+    "Logistic Regression": "model/trained_models/LogisticRegressionModel.pkl",
+    "Decision Tree": "model/trained_models/DecisionTreeModel.pkl",
+    "K-Nearest Neighbor Classifier": "model/trained_models/KNNModel.pkl",
+    "Gaussian Naive Bayes": "model/trained_models/GaussianNaiveBayesModel.pkl",
+    "Random Forest": "model/trained_models/RandomForestModel.pkl",
+    "XGBoost": "model/trained_models/XGBoostModel.pkl"
 }
 
 #Initialize Selection to Null
 model = None
+test_path = "data/split/MBTIClassification_TestSet.csv" 
 
 if model_option != "Select a Model":
     model_path = model_dict[model_option]
@@ -69,10 +84,7 @@ if data_source == "Select an option":
     st.info("Please select a test data option to proceed.")
     st.stop()
 elif data_source == "Use Preloaded Test File":
-    
-   
-    test_path = "data/split/test_set.csv" 
-    
+     
     try:
         df = pd.read_csv(test_path)
         st.success("Preloaded test file loaded successfully.")
@@ -100,6 +112,14 @@ elif data_source == "Upload Your Own CSV":
 
 
 if df is not None and model is not None:
+    is_valid, message = validate_test_file(df, model)
+
+    if not is_valid:
+        if st.button("Use Preloaded Test File Instead"):
+            df = pd.read_csv(test_path)
+            st.success("Switched to preloaded test file.")
+
+
     # Separate features and label
     X_test = df.drop(columns=["Response Id","Personality"])
     y_test = df["Personality"]
@@ -167,19 +187,35 @@ if df is not None and model is not None:
         output_dict=True
     )
 
+    accuracy_value = report_dict["accuracy"]
+    macro_f1 = report_dict["macro avg"]["f1-score"]
+    weighted_f1 = report_dict["weighted avg"]["f1-score"]
+    macro_precision = report_dict["macro avg"]["precision"]
+    macro_recall = report_dict["macro avg"]["recall"]
+
+    st.subheader("Overall Performance")
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Accuracy", f"{accuracy_value:.4f}")
+    col2.metric("Macro F1 Score", f"{macro_f1:.4f}")
+    col3.metric("Weighted F1 Score", f"{weighted_f1:.4f}")
+
+    col4, col5 = st.columns(2)
+
+    col4.metric("Macro Precision", f"{macro_precision:.4f}")
+    col5.metric("Macro Recall", f"{macro_recall:.4f}")
+
+
     report_df = pd.DataFrame(report_dict).transpose()
 
     # Round values
     report_df = report_df.round(3)
 
     class_report = report_df.iloc[:-3]  # remove accuracy + averages
-    overall_report = report_df.iloc[-3:]  # keep accuracy + macro + weighted
-
+   
     st.subheader("Per-Class Performance")
     st.table(class_report)
-
-    st.subheader("Overall Performance")
-    st.table(overall_report)
 
  
 
