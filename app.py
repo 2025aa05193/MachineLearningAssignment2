@@ -97,12 +97,12 @@ if data_source == "Use Preloaded Test File":
             st.download_button(
                 label="Download Test CSV",
                 data=file,
-                file_name="test.csv",
+                file_name="MBTIClassification_TestSet.csv",
                 mime="text/csv"
             )
     except FileNotFoundError:
         st.error("Preloaded test file not found in repository.")
-        st.stop()
+        df=None
 
 elif data_source == "Upload Your Own CSV":
     uploaded_file = st.file_uploader("Upload Test CSV", type=["csv"])
@@ -111,7 +111,7 @@ elif data_source == "Upload Your Own CSV":
         df = pd.read_csv(uploaded_file)
     else:
         st.info("Please upload a test CSV file.")
-        st.stop()
+        df=None
 
 
 
@@ -131,11 +131,7 @@ if df is not None and model is not None:
             if st.button("Use Preloaded Test File Instead"):
                 df = pd.read_csv(test_path)
                 st.success(f"Unable to load or validate your file because {message}. Switched to preloaded test file.")
-            else:
-                st.stop()
-        else:
-            # If preloaded file selected OR load failure
-            st.stop()
+       
 
 
     # Separate features and label
