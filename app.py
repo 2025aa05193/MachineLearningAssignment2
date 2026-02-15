@@ -89,7 +89,7 @@ data_source = st.selectbox(
 
 if data_source == "Select an option":
     st.info("Please select a test data option to proceed.")
-    st.stop()
+ 
 elif data_source == "Use Preloaded Test File":
      
     try:
