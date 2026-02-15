@@ -143,8 +143,11 @@ if df is not None and model is not None:
     y_test = df["Personality"]
 
     # Predictions
-    y_pred = model.predict(X_test)
-    y_prob = model.predict_proba(X_test)
+    with st.status("Model is predicting...", expanded=False) as status:
+        y_pred = model.predict(X_test)
+        y_prob = model.predict_proba(X_test)
+        status.update(label="Prediction complete!", state="complete")
+
     #y_pred = [MBTIType(i).name for i in y_pred]
     #y_test = [MBTIType(i).name for i in y_test]
 
@@ -159,7 +162,7 @@ if df is not None and model is not None:
     mcc = matthews_corrcoef(y_test, y_pred)
 
     st.subheader("Evaluation Metrics")
-    st.markdown("### Selected Model: " + model_option)
+    st.markdown("#### Selected Model: " + model_option)
 
     col1, col2, col3 = st.columns(3)
 
