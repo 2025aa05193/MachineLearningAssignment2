@@ -92,44 +92,11 @@ Test
 ### Model Performance Observations
 
 
-<table border="1" cellspacing="0" cellpadding="6">
-    <thead>
-        <tr>
-            <th>ML Model Name</th>
-            <th>Observation about model performance</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr>
-            <td>Logistic Regression</td>
-            <td>Logistic Regression provides a strong baseline model with stable performance across all metrics. Its high AUC and balanced Precision-Recall indicate reliable predictive performance. However, it is outperformed by non-linear and ensemble models, indicating that the dataset likely contains complex feature interactions.</td>
-        </tr>
-    
-        <tr>
-            <td>Decision Tree</td>
-            <td>The Decision Tree model shows the weakest performance among all models, with significantly lower Accuracy, F1, and MCC scores. While the AUC is reasonably high (0.8791), the drop in overall classification metrics suggests overfitting and poor generalization compared to ensemble methods.</td>
-        </tr>
-    
-        <tr>
-            <td>kNN</td>
-            <td>kNN achieves the highest overall Accuracy and MCC among all models, indicating superior predictive performance and strong class separation. The consistently high metrics suggest that the dataset benefits from local neighborhood-based decision boundaries.</td>
-        </tr>
-    
-        <tr>
-            <td>Naive Bayes</td>
-            <td>Naive Bayes performs strongly with excellent AUC and balanced Precision-Recall values. The high AUC (0.9925) indicates strong class separability, but its overall Accuracy and MCC are lower than kNN and ensemble models, suggesting limitations due to its independence assumption.</td>
-        </tr>
-    
-        <tr>
-            <td>Random Forest (Ensemble)</td>
-            <td>Random Forest delivers excellent performance with strong generalization ability. The high Accuracy and MCC demonstrate robustness and reduced overfitting compared to a single Decision Tree. Ensemble learning significantly improves predictive stability.</td>
-        </tr>
-    
-        <tr>
-            <td>XGBoost (Ensemble)</td>
-            <td>XGBoost performs extremely well across all metrics, slightly below kNN in Accuracy but showing the highest AUC. Its strong MCC indicates reliable performance even in complex decision boundaries. It demonstrates powerful learning capability through boosting and feature interaction modeling.</td>
-        </tr>
-    
-    </tbody>
-</table>
+| ML Model Name | Observation about model performance |
+|---------------|-------------------------------------|
+| Logistic Regression | Logistic Regression provides a strong baseline model with stable performance across all metrics. Its high AUC and balanced Precision-Recall indicate reliable predictive performance. However, it is outperformed by non-linear and ensemble models, indicating that the dataset likely contains complex feature interactions. |
+| Decision Tree | The Decision Tree model shows the weakest performance among all models, with significantly lower Accuracy, F1, and MCC scores. While the AUC is reasonably high (0.8791), the drop in overall classification metrics suggests overfitting and poor generalization compared to ensemble methods. |
+| kNN | kNN achieves the highest overall Accuracy and MCC among all models, indicating superior predictive performance and strong class separation. The consistently high metrics suggest that the dataset benefits from local neighborhood-based decision boundaries. |
+| Naive Bayes | Naive Bayes performs strongly with excellent AUC and balanced Precision-Recall values. The high AUC (0.9925) indicates strong class separability, but its overall Accuracy and MCC are lower than kNN and ensemble models, suggesting limitations due to its independence assumption. |
+| Random Forest (Ensemble) | Random Forest delivers excellent performance with strong generalization ability. The high Accuracy and MCC demonstrate robustness and reduced overfitting compared to a single Decision Tree. Ensemble learning significantly improves predictive stability. |
+| XGBoost (Ensemble) | XGBoost performs extremely well across all metrics, slightly below kNN in Accuracy but showing the highest AUC. Its strong MCC indicates reliable performance even in complex decision boundaries. It demonstrates powerful learning capability through boosting and feature interaction modeling. |
