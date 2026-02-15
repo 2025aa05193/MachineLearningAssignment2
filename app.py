@@ -78,15 +78,10 @@ if model_option != "Select a Model":
 # -----------------------------
 st.subheader("Test Data Source")
 df=None
-data_source = st.selectbox(
+data_source = st.radio(
     "Select Test Data Option:",
-    (
-        "Select an option",
-        "Use Preloaded Test File",
-        "Upload Your Own CSV"
-    )
+    ("Select an option","Use Preloaded Test File", "Upload Your Own CSV")
 )
-
 if data_source == "Select an option":
     st.info("Please select a test data option to proceed.")
     st.stop()
