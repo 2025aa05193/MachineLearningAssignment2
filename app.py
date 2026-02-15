@@ -264,6 +264,22 @@ if df is not None and model is not None:
    
     st.subheader("Per-Class Performance")
     st.table(class_report)
+    st.markdown(
+        """
+        <div style="
+            margin-top: 60px;
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #e6e6e6;
+            font-size: 13px;
+            color: #6c757d;
+        ">
+            MBTI Personality Classification App<br>
+            Developed by <strong>Siddharth Gupta</strong> | BITS ID: <strong>2025AA05193</strong>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
  
 
