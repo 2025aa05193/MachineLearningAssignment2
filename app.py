@@ -4,6 +4,7 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 from MBTIClass import MBTIType
+from model.utils.UtilityFunctions import load_model
 from sklearn.metrics import (
     accuracy_score,
     roc_auc_score,
@@ -17,10 +18,7 @@ from sklearn.metrics import (
 )
 
 st.title("MBTI Personality Classification App")
-@st.cache_resource
-def load_model(path):
-    with open(path, "rb") as f:
-        return pickle.load(f)
+
     
 def validate_test_file(df, model):
     
