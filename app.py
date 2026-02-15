@@ -119,6 +119,8 @@ if df is not None and model is not None:
 
     if not is_valid:
 
+        st.error(message)
+
         # Show fallback button ONLY if:
         # 1. User selected Upload
         # 2. File exists (df is already loaded)
