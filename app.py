@@ -133,11 +133,15 @@ elif data_source == "Upload Your Own CSV":
 
 
 
-if df is not None and model is not None:
-    if st.button("Run Evaluation"):
-        st.session_state.run_evaluation = True
+if (
+    model_option != st.session_state.prev_model or
+    data_source != st.session_state.prev_data_source
+):
+    st.session_state.prev_model = model_option
+    st.session_state.prev_data_source = data_source
+    st.empty()  # Clears previous output visually
 
-if st.session_state.run_evaluation and df is not None and model is not None:  
+if df is not None and model is not None:  
     is_valid, message = validate_test_file(df)
 
     if not is_valid:
