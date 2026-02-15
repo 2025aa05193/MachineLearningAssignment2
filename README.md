@@ -1,4 +1,4 @@
-# Machine Learning Model Comparison
+# MBTI Classification Based on Survey - Machine Learning Model Comparison
 
 ## a. Problem Statement
 Test
