@@ -159,7 +159,7 @@ if df is not None and model is not None:
     mcc = matthews_corrcoef(y_test, y_pred)
 
     st.subheader("Evaluation Metrics")
-
+    st.markdown("### Selected Model: " + model_option)
 
     col1, col2, col3 = st.columns(3)
 
