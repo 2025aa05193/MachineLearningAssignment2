@@ -18,14 +18,18 @@ from sklearn.metrics import (
 )
 
 st.title("MBTI Personality Classification App")
-
+test_path = "data/split/MBTIClassification_TestSet.csv" 
     
-def validate_test_file(df, model):
+def validate_test_file(df):
     
     if "Personality" not in df.columns:
         return False, "Missing 'Personality' column."
 
-    expected_features = set(model.feature_names_in_)
+    reference_df = pd.read_csv(test_path)
+
+    expected_features = set(
+        reference_df.drop(columns=["Response Id", "Personality"], errors="ignore").columns
+    )
     uploaded_features = set(df.drop(columns=["Personality"], errors="ignore").columns)
 
     if expected_features != uploaded_features:
@@ -62,7 +66,7 @@ model_dict = {
 
 #Initialize Selection to Null
 model = None
-test_path = "data/split/MBTIClassification_TestSet.csv" 
+
 
 if model_option != "Select a Model":
     model_path = model_dict[model_option]
@@ -110,12 +114,28 @@ elif data_source == "Upload Your Own CSV":
 
 
 if df is not None and model is not None:
-    is_valid, message = validate_test_file(df, model)
+    
+    is_valid, message = validate_test_file(df)
 
     if not is_valid:
-        if st.button("Use Preloaded Test File Instead"):
-            df = pd.read_csv(test_path)
-            st.success("Switched to preloaded test file.")
+
+        st.error(message)
+
+        # Show fallback button ONLY if:
+        # 1. User selected Upload
+        # 2. File exists (df is already loaded)
+        # 3. Validation failed
+
+        if data_source == "Upload Your Own CSV":
+            
+            if st.button("Use Preloaded Test File Instead"):
+                df = pd.read_csv(test_path)
+                st.success(f"Unable to load or validate your file because {message}. Switched to preloaded test file.")
+            else:
+                st.stop()
+        else:
+            # If preloaded file selected OR load failure
+            st.stop()
 
 
     # Separate features and label
