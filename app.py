@@ -19,6 +19,16 @@ from sklearn.metrics import (
 
 st.title("MBTI Personality Classification App")
 test_path = "data/split/MBTIClassification_TestSet.csv" 
+# Initialize session state
+if "prev_model" not in st.session_state:
+    st.session_state.prev_model = None
+
+if "prev_data_source" not in st.session_state:
+    st.session_state.prev_data_source = None
+
+if "run_evaluation" not in st.session_state:
+    st.session_state.run_evaluation = False
+
     
 def validate_test_file(df):
     
@@ -63,7 +73,10 @@ model_dict = {
     "Random Forest": "model/trained_models/RandomForestModel.pkl",
     "XGBoost": "model/trained_models/XGBoostModel.pkl"
 }
-
+# Reset results if model changes
+if model_option != st.session_state.prev_model:
+    st.session_state.run_evaluation = False
+    st.session_state.prev_model = model_option
 #Initialize Selection to Null
 model = None
 
@@ -82,6 +95,13 @@ data_source = st.radio(
     "Select Test Data Option:",
     ("Select an option","Use Preloaded Test File", "Upload Your Own CSV")
 )
+
+# Reset results if data source changes
+if data_source != st.session_state.prev_data_source:
+    st.session_state.run_evaluation = False
+    st.session_state.prev_data_source = data_source
+
+
 if data_source == "Select an option":
     st.info("Please select a test data option to proceed.")
     st.stop()
@@ -95,7 +115,7 @@ elif data_source == "Use Preloaded Test File":
             st.download_button(
                 label="Download Test CSV",
                 data=file,
-                file_name="test.csv",
+                file_name="MBTIClassification_TestSet.csv",
                 mime="text/csv"
             )
     except FileNotFoundError:
@@ -114,7 +134,10 @@ elif data_source == "Upload Your Own CSV":
 
 
 if df is not None and model is not None:
-    
+    if st.button("Run Evaluation"):
+        st.session_state.run_evaluation = True
+
+if st.session_state.run_evaluation and df is not None and model is not None:  
     is_valid, message = validate_test_file(df)
 
     if not is_valid:
