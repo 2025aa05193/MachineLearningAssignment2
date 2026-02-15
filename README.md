@@ -11,82 +11,14 @@ Test
 ### Model Performance Comparison
 
 
-<table border="1" cellspacing="0" cellpadding="6">
-    <thead>
-        <tr>
-            <th>ML Model Name</th>
-            <th>Accuracy</th>
-            <th>AUC</th>
-            <th>Precision</th>
-            <th>Recall</th>
-            <th>F1</th>
-            <th>MCC</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr>
-            <td>Decision Tree</td>
-            <td>0.6476</td>
-            <td>0.8791</td>
-            <td>0.6482</td>
-            <td>0.6475</td>
-            <td>0.6474</td>
-            <td>0.6241</td>
-        </tr>
-    
-        <tr>
-            <td>Naive Bayes</td>
-            <td>0.9114</td>
-            <td>0.9925</td>
-            <td>0.9119</td>
-            <td>0.9114</td>
-            <td>0.9113</td>
-            <td>0.9056</td>
-        </tr>
-    
-        <tr>
-            <td>kNN</td>
-            <td>0.9869</td>
-            <td>0.9948</td>
-            <td>0.9869</td>
-            <td>0.9869</td>
-            <td>0.9869</td>
-            <td>0.9860</td>
-        </tr>
-    
-        <tr>
-            <td>Logistic Regression</td>
-            <td>0.9191</td>
-            <td>0.9932</td>
-            <td>0.9194</td>
-            <td>0.9191</td>
-            <td>0.9192</td>
-            <td>0.9137</td>
-        </tr>
-    
-        <tr>
-            <td>Random Forest (Ensemble)</td>
-            <td>0.9773</td>
-            <td>0.9941</td>
-            <td>0.9773</td>
-            <td>0.9773</td>
-            <td>0.9773</td>
-            <td>0.9758</td>
-        </tr>
-    
-        <tr>
-            <td>XGBoost (Ensemble)</td>
-            <td>0.9824</td>
-            <td>0.9950</td>
-            <td>0.9825</td>
-            <td>0.9824</td>
-            <td>0.9824</td>
-            <td>0.9813</td>
-        </tr>
-    
-    </tbody>
-</table>
+| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|---------------|----------|-----|-----------|--------|-----|-----|
+| Decision Tree | 0.6476 | 0.8791 | 0.6482 | 0.6475 | 0.6474 | 0.6241 |
+| Naive Bayes | 0.9114 | 0.9925 | 0.9119 | 0.9114 | 0.9113 | 0.9056 |
+| kNN | 0.9869 | 0.9948 | 0.9869 | 0.9869 | 0.9869 | 0.9860 |
+| Logistic Regression | 0.9191 | 0.9932 | 0.9194 | 0.9191 | 0.9192 | 0.9137 |
+| Random Forest (Ensemble) | 0.9773 | 0.9941 | 0.9773 | 0.9773 | 0.9773 | 0.9758 |
+| XGBoost (Ensemble) | 0.9824 | 0.9950 | 0.9825 | 0.9824 | 0.9824 | 0.9813 |
 
 
 ### Model Performance Observations
