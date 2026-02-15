@@ -130,7 +130,7 @@ if df is not None and model is not None:
             
             if st.button("Use Preloaded Test File Instead"):
                 df = pd.read_csv(test_path)
-                st.success(f"Unable to load or validate your file because {message}. Switched to preloaded test file.")
+                st.warning(f"Unable to load or validate your file because {message}. Switched to preloaded test file.")
             else:
                 st.stop()
         else:
