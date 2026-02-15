@@ -1,10 +1,18 @@
 # MBTI Classification Based on Survey - Machine Learning Model Comparison
 
 ## a. Problem Statement
-Test
+The objective is to develop and evaluate multiple machine learning classifiers to accurately predict MBTI personality types from survey responses in the 60k MBTI dataset, and to compare model performance using standard evaluation metrics.
 
 ## b. Dataset Description
-Test
+Dataset URL: https://www.kaggle.com/datasets/anshulmehtakaggl/60k-responses-of-16-personalities-test-mbt/data 
+ Description: It contains the questions from the 16 Personality Tests and their answers in the Scale that they use but is numerically encoded:
+Fully Agree: 3
+Partially Agree: 2
+Slightly Agree: 1
+neutral -> 0
+Slightly disagree: -1
+Partially disagree: -2
+Fully disagree: -3
 
 ## c. Models Used and Evaluation Metrics
 
