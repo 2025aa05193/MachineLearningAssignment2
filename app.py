@@ -30,7 +30,7 @@ def validate_test_file(df):
     expected_features = set(
         reference_df.drop(columns=["Response Id", "Personality"], errors="ignore").columns
     )
-    uploaded_features = set(df.drop(columns=["Personality"], errors="ignore").columns)
+    uploaded_features = set(df.drop(columns=["Response Id","Personality"], errors="ignore").columns)
 
     if expected_features != uploaded_features:
         return False, "Feature columns do not match expected model features."
