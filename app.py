@@ -87,10 +87,7 @@ data_source = st.selectbox(
     )
 )
 
-if data_source == "Select an option":
-    st.info("Please select a test data option to proceed.")
- 
-elif data_source == "Use Preloaded Test File":
+if data_source == "Use Preloaded Test File":
      
     try:
         df = pd.read_csv(test_path)
